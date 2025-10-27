@@ -32,16 +32,28 @@ struct TodayReminder: View {
                             .background(Color.gray.opacity(0.5))
                             .padding(.horizontal)
                         
-                        Text("Your plants are waiting for a sip 💧")
-                            .foregroundColor(.white)
-                            .font(.system(size: 18))
-                            .padding(.horizontal)
-                        
-                        ProgressView(value: progress)
-                            .tint(.green)
-                            .padding(.horizontal)
-                            .scaleEffect(y: 3)
-                        
+//                        Text("Your plants are waiting for a sip 💧")
+//                            .foregroundColor(.white)
+//                            .font(.system(size: 18))
+//                            .padding(.horizontal)
+//                        
+//                        ProgressView(value: progress)
+//                            .tint(.green)
+//                            .padding(.horizontal)
+//                            .scaleEffect(y: 3)
+//
+                        Text("\(viewModel.reminders.filter { $0.isWatered }.count) of your plant\(viewModel.reminders.filter { $0.isWatered }.count == 1 ? "" : "s") feel loved today 🌱")
+                                                .foregroundColor(.white)
+                                                .font(.headline)
+                                                .padding(.top, 20)
+
+                                            
+                                            ProgressView(
+                                                value: Double(viewModel.reminders.filter { $0.isWatered }.count),
+                                                total: Double(max(viewModel.reminders.count, 1))
+                                            )
+                                            .progressViewStyle(LinearProgressViewStyle(tint: .green))
+                                            .padding(.horizontal)
                         // ✅ LIST WITH VISIBLE DIVIDERS
                         List {
                             ForEach(Array(viewModel.reminders.enumerated()), id: \.element.id) { index, reminder in
