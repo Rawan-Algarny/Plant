@@ -1,10 +1,3 @@
-//
-//  TodayReminder.swift
-//  Plant
-//
-//  Created by Rawan Algarny on 05/05/1447 AH.
-//
-
 
 import SwiftUI
 
@@ -12,8 +5,6 @@ struct TodayReminder: View {
     @ObservedObject var viewModel: ReminderViewModel
     @State private var selectedReminder: PlantReminder? = nil
     @State private var showSetReminder = false
-
-    
     
     private var progress: Double {
         guard !viewModel.reminders.isEmpty else { return 0 }
@@ -22,81 +13,103 @@ struct TodayReminder: View {
     }
 
     var body: some View {
-        NavigationView {
+        //NavigationView {
             ZStack {
-                
                 Color.black.ignoresSafeArea()
-                    
+                
+                // ✅ CONDITIONAL VIEW: Show AllDone if all completed
+                if viewModel.allRemindersCompleted {
+                    AllDone(viewModel: viewModel)
+                } else {
+                    // Your existing reminder list
+                    VStack(alignment: .leading, spacing: 20) {
+                        Text("My Plants 🌱")
+                            .foregroundColor(.white)
+                            .font(.system(size: 33, weight: .bold))
+                            .padding(.horizontal)
 
-                VStack(alignment: .leading, spacing: 20) {
-                    Text("My Plants 🌱")
-                        .foregroundColor(.white)
-                        .font(.system(size: 33, weight: .bold))
-                       
-
-                    Divider().background(Color.gray.opacity(0.5))
-                    
-                    Text("Your plants are waiting for a sip 💧")
-                        .foregroundColor(.white)
-                        .font(.system(size: 18))
-                    
-                    ProgressView(value: progress)
-                        .tint(.green)
-                        .padding(.trailing, 20)
-                        .scaleEffect(y: 3)
-                    
-                    ScrollView {
-                        VStack(alignment: .leading, spacing: 20)
-                        {
-                            ForEach($viewModel.reminders) { $reminder in
-                                Button {
-                                    selectedReminder = reminder
-                                } label: {
+                        Divider()
+                            .background(Color.gray.opacity(0.5))
+                            .padding(.horizontal)
+                        
+                        Text("Your plants are waiting for a sip 💧")
+                            .foregroundColor(.white)
+                            .font(.system(size: 18))
+                            .padding(.horizontal)
+                        
+                        ProgressView(value: progress)
+                            .tint(.green)
+                            .padding(.horizontal)
+                            .scaleEffect(y: 3)
+                        
+                        // ✅ LIST WITH VISIBLE DIVIDERS
+                        List {
+                            ForEach(Array(viewModel.reminders.enumerated()), id: \.element.id) { index, reminder in
+                                VStack(spacing: 0) {
                                     PlantRow(
                                         name: reminder.name,
                                         room: reminder.room,
                                         light: reminder.light,
                                         waterAmount: reminder.waterAmount,
-                                        isWatered: $reminder.isWatered
+                                        isWatered: Binding(
+                                            get: { viewModel.reminders[index].isWatered },
+                                            set: { viewModel.reminders[index].isWatered = $0 }
+                                        ),
+                                        onTap: {
+                                            selectedReminder = reminder
+                                        }
                                     )
+                                    
+                                    // ✅ VISIBLE DIVIDER
+                                    if index < viewModel.reminders.count - 1 {
+                                        Rectangle()
+                                            .fill(Color.gray.opacity(0.5))
+                                            .frame(height: 1)
+                                            .padding(.top, 15)
+                                            .padding(.bottom, 5)
+                                    }
+                                }
+                                .listRowBackground(Color.clear)
+                                .listRowSeparator(.hidden)
+                                .listRowInsets(EdgeInsets(top: 10, leading: 16, bottom: 10, trailing: 16))
+                                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                    Button(role: .destructive) {
+                                        if let idx = viewModel.reminders.firstIndex(where: { $0.id == reminder.id }) {
+                                            viewModel.reminders.remove(at: idx)
+                                        }
+                                    } label: {
+                                        Label("Delete", systemImage: "trash")
+                                    }
                                 }
                             }
                         }
-
-                        .padding(.horizontal)
+                        .listStyle(.plain)
+                        .scrollContentBackground(.hidden)
+                        .background(Color.black)
+                        
+                        // Floating add button
+                        Button(action: {
+                            showSetReminder = true
+                        }) {
+                            Image(systemName: "plus")
+                                .font(.system(size: 28, weight: .bold))
+                                .foregroundColor(.white)
+                                .frame(width: 65, height: 65)
+                                .background(Color.green)
+                                .clipShape(Circle())
+                                .shadow(radius: 10)
+                                .padding()
+                                .padding(.trailing, 10)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                        .fullScreenCover(isPresented: $showSetReminder) {
+                            SetReminder(viewModel: viewModel)
+                        }
                     }
-                    
-                    Spacer()
-                    
-                    // ✅ Floating add button
-                    Button(action: {
-                        showSetReminder = true
-                    }) {
-                        Image(systemName: "plus")
-                            .font(.system(size: 28, weight: .bold))
-                            .foregroundColor(.white)
-                            .frame(width: 65, height: 65)
-                            .background(Color.green)
-                            .clipShape(Circle())
-                            .shadow(radius: 10)
-                            .padding()
-                            .padding(.trailing, 10)
-                    }
-                    .frame(maxWidth: .infinity, alignment: .trailing) // move to bottom right
-
-                    // ✅ Navigate to SetReminder page
-                    .fullScreenCover(isPresented: $showSetReminder) {
-                        SetReminder(viewModel: viewModel)
-                    }
-
-                    
                 }
-                .padding()
             }
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
-
-            // ✅ Full screen instead of sheet
             .fullScreenCover(item: $selectedReminder) { reminder in
                 if let index = viewModel.reminders.firstIndex(where: { $0.id == reminder.id }) {
                     EditReminder(viewModel: viewModel, reminder: $viewModel.reminders[index])
@@ -105,28 +118,33 @@ struct TodayReminder: View {
             }
         }
     }
-}
+//}
 
-// Same as your PlantRow
 struct PlantRow: View {
     var name: String
     var room: String
     var light: String
     var waterAmount: String
     @Binding var isWatered: Bool
+    var onTap: () -> Void
 
     var body: some View {
-        VStack(alignment: .leading) {
-            Label(room, systemImage: "location.fill")
-                .foregroundColor(.gray)
-                .font(.callout)
-
-            HStack {
-                Button(action: { isWatered.toggle() }) {
-                    Image(systemName: isWatered ? "checkmark.circle.fill" : "circle")
-                        .foregroundColor(isWatered ? .green : .gray)
-                        .font(.system(size: 22))
-                }
+        HStack {
+            // Checkbox button
+            Button(action: {
+                isWatered.toggle()
+            }) {
+                Image(systemName: isWatered ? "checkmark.circle.fill" : "circle")
+                    .foregroundColor(isWatered ? .green : .gray)
+                    .font(.system(size: 22))
+            }
+            .buttonStyle(PlainButtonStyle())
+            
+            // Plant info
+            VStack(alignment: .leading, spacing: 8) {
+                Label(room, systemImage: "location.fill")
+                    .foregroundColor(.gray)
+                    .font(.callout)
 
                 VStack(alignment: .leading, spacing: 4) {
                     Text(name)
@@ -143,8 +161,13 @@ struct PlantRow: View {
                             .font(.caption)
                     }
                 }
-                Spacer()
             }
+            .contentShape(Rectangle())
+            .onTapGesture {
+                onTap()
+            }
+            
+            Spacer()
         }
         .padding(.vertical, 5)
     }
