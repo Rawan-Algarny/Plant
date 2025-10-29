@@ -26,8 +26,6 @@ This app provides a simple way to stay organized with smart reminders and progre
 ## 🌻 Screenshots
 | Home Screen                  | Set Reminder                         | All Done Page                    |
 | ---------------------------- | ------------------------------------ | -------------------------------- |
-<img width="300" alt="Home Screen" src="https://github.com/user-attachments/assets/060c117c-4d9c-4faf-81ed-a7232b508400" />
- | ![Set Reminder](link-to-screenshot2) | ![All Done](link-to-screenshot3) |
 
 
 ---
