@@ -1,4 +1,4 @@
-<img width="428" height="926" alt="image" src="https://github.com/user-attachments/assets/afce3f69-8df8-434f-bef2-a734ef10e2b4" /><h1 align="center">🌿 Plant Reminder App 🌿</h1>
+<h1 align="center">🌿 Plant Reminder App 🌿</h1>
 
 <p align="center">A simple and elegant way to care for your plants 🌱</p>
 
