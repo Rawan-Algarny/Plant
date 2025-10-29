@@ -1,4 +1,4 @@
-<h1 align="center">🌿 Plant Reminder App 🌿</h1>
+<img width="428" height="926" alt="image" src="https://github.com/user-attachments/assets/afce3f69-8df8-434f-bef2-a734ef10e2b4" /><h1 align="center">🌿 Plant Reminder App 🌿</h1>
 
 <p align="center">A simple and elegant way to care for your plants 🌱</p>
 
@@ -23,8 +23,16 @@ This app provides a simple way to stay organized with smart reminders and progre
 - Simple, aesthetic interface for easy use  
 
 ---
+## 🌻 Screenshots
+| Home Screen                  | Set Reminder                         | All Done Page                    |
+| ---------------------------- | ------------------------------------ | -------------------------------- |
+| ![Home] <img width="428" height="926" alt="image" src="https://github.com/user-attachments/assets/060c117c-4d9c-4faf-81ed-a7232b508400" />
+ | ![Set Reminder](link-to-screenshot2) | ![All Done](link-to-screenshot3) |
 
-## 🌱 Getting Started
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/yourusername/plant-reminder-app.git
+
+---
+### 👩‍💻 Maintained By
+## Rawan Algarny
+🌍 Based in Riyadh, Saudi Arabia 
+💌 Contact: rawanalgarny21@gmail.com
+📱 GitHub: 
