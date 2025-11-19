@@ -5,7 +5,7 @@
 ---
 
 ## 🌸 About the Project
-The **Plant Reminder App** helps plant lovers easily manage their plant care routine.  
+The Plant Reminder App helps plant lovers easily manage their plant care routine.  
 Users can add their plants, set watering reminders, track light and room conditions, and mark plants as watered — ensuring they stay healthy and thriving effortlessly.
 
 ---
@@ -23,38 +23,12 @@ This app provides a simple way to stay organized with smart reminders and progre
 - Simple, aesthetic interface for easy use  
 
 ---
-
 ## 🌻 Screenshots
+| Home Screen | Set Reminder | All Done Page |
+|------------|-------------|---------------|
+|<div style="background:#c9f7c1; padding:12px; display:inline-block;"><img width="200" alt="Home Screen" src="https://github.com/user-attachments/assets/1cc95575-0f5c-40d0-94da-618ad8791431" /> | <img width="200" alt="Set Reminder" src="https://github.com/user-attachments/assets/35a2aa90-e038-4888-8090-3c6e03bb537b" /> | <img width="200" alt="All Done" src="https://github.com/user-attachments/assets/d2d4126e-fb7c-40a7-ba81-3ec9423d62ea" /> |
 
-<table>
-  <tr>
-    <th>Home Screen</th>
-    <th>Set Reminder</th>
-    <th>All Done Page</th>
-  </tr>
-  <tr>
-    <td align="center">
-      <div style="background:#c9f7c1; padding:12px; display:inline-block; border-radius:8px;">
-        <img width="200" src="https://github.com/user-attachments/assets/1cc95575-0f5c-40d0-94da-618ad8791431" />
-      </div>
-    </td>
-    <td align="center">
-      <div style="background:#c9f7c1; padding:12px; display:inline-block; border-radius:8px;">
-        <img width="200" src="https://github.com/user-attachments/assets/35a2aa90-e038-4888-8090-3c6e03bb537b" />
-      </div>
-    </td>
-    <td align="center">
-      <div style="background:#c9f7c1; padding:12px; display:inline-block; border-radius:8px;">
-        <img width="200" src="https://github.com/user-attachments/assets/d2d4126e-fb7c-40a7-ba81-3ec9423d62ea" />
-      </div>
-    </td>
-  </tr>
-</table>
 
----
-
-### 👩‍💻 Maintained By
-## Rawan Algarny  
-🌍 Based in Riyadh, Saudi Arabia  
-💌 Contact: rawanalgarny21@gmail.com  
-📱 GitHub:
+🌍 Based in Riyadh, Saudi Arabia 
+💌 Contact: rawanalgarny21@gmail.com
+📱 LinkedIn: https://www.linkedin.com/in/rawan-algarny-1869b6315/
