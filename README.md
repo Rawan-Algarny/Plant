@@ -31,4 +31,4 @@ This app provides a simple way to stay organized with smart reminders and progre
 
 🌍 Based in Riyadh, Saudi Arabia 
 💌 Contact: rawanalgarny21@gmail.com
-📱 LinkedIn: https://www.linkedin.com/in/rawan-algarny-1869b6315/
+📱 LinkedIn: https://www.linkedin.com/in/rawan-algarny-1869b6315/ 
